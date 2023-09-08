@@ -5,10 +5,24 @@ import WalletInput from "./WalletInput";
 import JoinButton from "../Buttons/JoinButton";
 import TermsConditions from "./Terms&Conditions";
 import Header from "./Header";
+import { isValidEmail } from "../../utils/isValidEmailAddress";
+import { isValidEthereumAddress } from "../../utils/isValidEthereumAddress";
 
 const Main = () => {
   const [emailAddress, setEmailAddress] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
+
+  useEffect(() => {
+    if (emailAddress && !isValidEmail(emailAddress)) {
+      // Handle invalid email format here, perhaps show an error message to the user
+      console.log("Invalid email format");
+    }
+
+    if (walletAddress && !isValidEthereumAddress(walletAddress)) {
+      // Handle invalid Ethereum address format here, perhaps show an error message to the user
+      console.log("Invalid Ethereum address format");
+    }
+  }, [emailAddress, walletAddress]);
 
   // pass is connected to the button
   // pass email address to the button
@@ -22,8 +36,14 @@ const Main = () => {
           <div className="w-full flex flex-col justify-center items-center gap-4">
             {/* Mint Form */}
             <Header />
-            <EmailInput setEmailAddress={setEmailAddress} />
-            <WalletInput setWalletAddress={setWalletAddress} />
+            <EmailInput
+              setEmailAddress={setEmailAddress}
+              emailAddress={emailAddress}
+            />
+            <WalletInput
+              setWalletAddress={setWalletAddress}
+              walletAddress={walletAddress}
+            />
             <JoinButton
               walletAddress={walletAddress}
               emailAddress={emailAddress}
