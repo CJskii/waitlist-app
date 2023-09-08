@@ -34,7 +34,10 @@ const WalletInput = (props: {
         <span className="label-text">Ethereum wallet address*</span>
         {!enterManually ? (
           <span
-            onClick={() => setEnterManually(true)}
+            onClick={() => {
+              setEnterManually(true);
+              setWalletAddress("");
+            }}
             className="text-sm underline tracking-wider cursor-pointer"
           >
             Enter manually?
