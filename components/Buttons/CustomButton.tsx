@@ -48,21 +48,13 @@ export const CustomButton = () => {
 
               if (chain.unsupported) {
                 return (
-                  <button
-                    onClick={openChainModal}
-                    type="button"
-                    className="text-lg play-btn px-[1rem] py-3 cursor-pointer font-normal animate-text bg-red-500 rounded"
-                  >
+                  <button onClick={openChainModal} type="button">
                     Wrong Network
                   </button>
                 );
               }
               return (
                 <div>
-                  <button onClick={openChainModal} type="button">
-                    {account.displayBalance}
-                  </button>
-
                   <button onClick={openAccountModal} type="button">
                     {/* {account.displayName} */}
 

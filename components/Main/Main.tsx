@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNetwork } from "wagmi";
 import Logo from "./Logo";
 import EmailInput from "./EmailInput";
 import WalletInput from "./WalletInput";
@@ -8,17 +7,12 @@ import TermsConditions from "./Terms&Conditions";
 import Header from "./Header";
 
 const Main = () => {
-  const { chain } = useNetwork();
-
-  const [isConnected, setIsConnected] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
 
-  useEffect(() => {
-    if (chain) {
-      setIsConnected(true);
-    }
-  }, [chain]);
+  // pass is connected to the button
+  // pass email address to the button
+  // pass wallet address to the button
 
   return (
     <div className="flex flex-col justify-betweeen items-center min-w-full">
@@ -30,7 +24,10 @@ const Main = () => {
             <Header />
             <EmailInput setEmailAddress={setEmailAddress} />
             <WalletInput setWalletAddress={setWalletAddress} />
-            <JoinButton />
+            <JoinButton
+              walletAddress={walletAddress}
+              emailAddress={emailAddress}
+            />
             <TermsConditions />
           </div>
         </div>

@@ -1,12 +1,20 @@
 import CustomButton from "../Buttons/CustomButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAccount } from "wagmi";
 
 const WalletInput = (props: {
   setWalletAddress: (address: string) => void;
 }) => {
   const { setWalletAddress } = props;
-
+  const { address, isConnected } = useAccount();
   const [enterManually, setEnterManually] = useState(false);
+
+  useEffect(() => {
+    if (!enterManually && address && isConnected) {
+      setWalletAddress(address);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [address, isConnected, enterManually]);
 
   return (
     <div className="form-control w-full max-w-[90%]">
@@ -33,6 +41,9 @@ const WalletInput = (props: {
           type="text"
           placeholder="Type here"
           className="input input-bordered w-full bg-base-200"
+          onChange={
+            enterManually ? (e) => setWalletAddress(e.target.value) : () => {}
+          }
         />
       ) : (
         <div className="input input-bordered w-full bg-base-200 flex items-center justify-center cursor-pointer">
