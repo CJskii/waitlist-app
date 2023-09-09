@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +5,86 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Bridges {
+  id              Int      @id @default(autoincrement())
+  ethereumAddress String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime
+  count           Int      @default(0)
+  User            User     @relation(fields: [ethereumAddress], references: [ethereumAddress])
+}
+
+model DailyReward {
+  id              Int               @id @default(autoincrement())
+  day             Int               @unique
+  reward          String
+  description     String
+  points          Int
+  UserDailyReward UserDailyReward[]
+}
+
+model Interactions {
+  id              Int      @id @default(autoincrement())
+  ethereumAddress String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime
+  count           Int      @default(0)
+  User            User     @relation(fields: [ethereumAddress], references: [ethereumAddress])
+}
+
+model Mints {
+  id              Int      @id @default(autoincrement())
+  ethereumAddress String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime
+  count           Int      @default(0)
+  User            User     @relation(fields: [ethereumAddress], references: [ethereumAddress])
+}
+
+model Streaks {
+  id              Int       @id @default(autoincrement())
+  ethereumAddress String
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime
+  startDate       DateTime
+  endDate         DateTime?
+  currentStreak   Int       @default(0)
+  User            User      @relation(fields: [ethereumAddress], references: [ethereumAddress])
+}
+
+model User {
+  ethereumAddress     String            @id
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime
+  totalPoints         Int               @default(0)
+  inviteLink          String            @unique
+  invitedById         String?
+  leaderboardRank     Int?
+  email               String?
+  discordHandle       String?
+  githubHandle        String?
+  twitterHandle       String?
+  currentRewardDay    Int               @default(1)
+  inviteCount         Int               @default(0)
+  lastRewardClaimedAt DateTime?
+  Bridges             Bridges[]
+  Interactions        Interactions[]
+  Mints               Mints[]
+  Streaks             Streaks[]
+  User                User?             @relation("UserToUser", fields: [invitedById], references: [ethereumAddress])
+  other_User          User[]            @relation("UserToUser")
+  UserDailyReward     UserDailyReward[]
+
+  @@index([totalPoints])
+}
+
+model UserDailyReward {
+  id            Int         @id @default(autoincrement())
+  userId        String
+  dailyRewardId Int
+  claimedAt     DateTime    @default(now())
+  DailyReward   DailyReward @relation(fields: [dailyRewardId], references: [id])
+  User          User        @relation(fields: [userId], references: [ethereumAddress])
 }
