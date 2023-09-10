@@ -28,7 +28,7 @@ const ButtonGroup = (props: { inviteLink: string }) => {
   };
 
   return (
-    <div className="flex justify-between items-center w-full p-4 gap-4">
+    <div className="flex justify-between items-center w-full p-4 gap-4 max-[325px]:flex-col">
       <button
         onClick={handleTwitterShare}
         className="flex justify-center items-center gap-2 w-full bg-base-300 text-base-content text-xl rounded-lg p-2 border-2 border-transparent hover:border-accent"

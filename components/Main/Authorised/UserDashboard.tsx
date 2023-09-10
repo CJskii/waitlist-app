@@ -54,7 +54,7 @@ const UserDashboard = (props: UserDashboardProps) => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center max-w-[95vw]">
       <div className="flex px-2 justify-center items-center w-full">
         <button className="btn" onClick={() => setJoined(false)}>
           <IoReturnUpBackOutline className="text-2xl" />{" "}

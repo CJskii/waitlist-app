@@ -39,16 +39,7 @@ const Main = () => {
   };
 
   return (
-    <motion.div
-      drag
-      dragConstraints={{
-        top: -50,
-        left: -25,
-        right: 25,
-        bottom: 50,
-      }}
-      className="flex flex-col justify-betweeen items-center min-w-full"
-    >
+    <div className="flex flex-col justify-betweeen items-center min-w-full">
       <section className="bg-base card card-side bg-base-200 shadow-xl bg rounded-xl">
         <div className="flex flex-col justify-start items-center gap-4 bg-base max-w-[500px]">
           <Logo />
@@ -77,7 +68,7 @@ const Main = () => {
           )}
         </div>
       </section>
-    </motion.div>
+    </div>
   );
 };
 
