@@ -71,11 +71,13 @@ const UserDashboard = (props: UserDashboardProps) => {
       </h1>
       <span className="w-full px-4">
         Invite your friends and be active at{" "}
-        <a href="mintly.lol" target="_blank" className="underline">
+        <a href="https://www.mintly.lol" target="_blank" className="underline">
           Mintly.lol
         </a>
       </span>
-      <ButtonGroup />
+      <ButtonGroup
+        inviteLink={userData.inviteLink ? userData.inviteLink : ""}
+      />
 
       <CopyReflink
         inviteLink={userData.inviteLink ? userData.inviteLink : ""}

@@ -16,7 +16,7 @@ const Toast: React.FC<{ message: string; onClose: () => void }> = ({
       animate="visible"
       exit="hidden"
       variants={variants}
-      className="fixed right-0 top-[15%] mt-4 mr-4 p-4 bg-error text-error-content rounded-lg shadow-md z-50 flex justify-center items-center"
+      className="fixed right-0 top-[15%] mt-4 mr-4 p-4 bg-warning text-warning-content rounded-lg shadow-md z-50 flex justify-center items-center"
     >
       {message}
 
