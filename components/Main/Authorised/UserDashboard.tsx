@@ -46,11 +46,15 @@ const UserDashboard = (props: UserDashboardProps) => {
   }, [walletAddress]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <span className="loading loading-ball  w-full"></span>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <div className="text-error w-full text-center text-3xl">
+        Error: {error}
+      </div>
+    );
   }
 
   return (
