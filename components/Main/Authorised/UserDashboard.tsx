@@ -69,10 +69,13 @@ const UserDashboard = (props: UserDashboardProps) => {
       </div>
 
       <UserStats data={userData ? userData : {}} />
+      <div className="w-full flex justify-start items-center">
+        <h1 className="px-4 text-xl font-bold italic">
+          Want to get ahead in line?
+        </h1>
+        <div className="badge badge-primary">Earn extra XP</div>
+      </div>
 
-      <h1 className="w-full px-4 text-xl font-bold italic">
-        Want to get ahead in line?
-      </h1>
       <span className="w-full px-4">
         Invite your friends and be active at{" "}
         <a href="https://www.mintly.lol" target="_blank" className="underline">
