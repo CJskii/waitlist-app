@@ -1,5 +1,8 @@
 import { IoReturnUpBackOutline } from "react-icons/io5";
 import UserStats from "./UserStats";
+import ButtonGroup from "../../Buttons/ButtonGroup";
+import CopyReflink from "./CopyReflink";
+import ConnectWithUs from "./ConnectWithUs";
 
 interface UserDashboardProps {
   userDashboardProps: {
@@ -32,35 +35,11 @@ const UserDashboard = (props: UserDashboardProps) => {
           Mintly.lol
         </a>
       </span>
-      <div className="flex justify-between items-center w-full p-4 gap-4">
-        <button className="w-full bg-base-300 text-base-content text-xl rounded-lg p-2 border-2 border-transparent hover:border-accent">
-          Tweet
-        </button>
-        <button className="w-full  bg-base-300 text-base-content text-xl rounded-lg p-2 border-2 border-transparent hover:border-accent">
-          Share
-        </button>
-        <button className="w-full bg-base-300 text-base-content text-xl rounded-lg p-2 border-2 border-transparent hover:border-accent">
-          Get XP
-        </button>
-      </div>
+      <ButtonGroup />
 
-      <div className="flex justify-start gap-4 items-center w-full px-4 py-2">
-        <input
-          type="text"
-          placeholder="Type here"
-          className="input w-full max-w-xs"
-        />
-        <button className="btn bg-base-300 text-base-content text-xl rounded-lg p-2 px-8 border-2 border-transparent hover:border-accent">
-          Copy
-        </button>
-      </div>
+      <CopyReflink />
 
-      <div className="w-full flex flex-col justify-center items-center py-2">
-        <h1 className="w-full text-xl font-bold px-4">Connect with us</h1>
-        <button className="w-full max-w-[95%] mt-4 bg-base-300 text-base-content text-xl rounded-lg p-4 border-2 border-transparent hover:border-accent">
-          Follow us on Twitter
-        </button>
-      </div>
+      <ConnectWithUs />
     </div>
   );
 };
