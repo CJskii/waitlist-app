@@ -1,12 +1,32 @@
 import CustomButton from "../Buttons/CustomButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAccount } from "wagmi";
+import { isValidEthereumAddress } from "../../utils/isValidEthereumAddress";
 
 const WalletInput = (props: {
   setWalletAddress: (address: string) => void;
+  walletAddress: string;
 }) => {
-  const { setWalletAddress } = props;
-
+  const { setWalletAddress, walletAddress } = props;
+  const { address, isConnected } = useAccount();
   const [enterManually, setEnterManually] = useState(false);
+
+  useEffect(() => {
+    if (!enterManually && address && isConnected) {
+      setWalletAddress(address);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [address, isConnected, enterManually]);
+
+  let inputClass = "input input-bordered w-full bg-base-200";
+
+  if (walletAddress) {
+    if (isValidEthereumAddress(walletAddress)) {
+      inputClass += " input-info";
+    } else {
+      inputClass += " input-error";
+    }
+  }
 
   return (
     <div className="form-control w-full max-w-[90%]">
@@ -14,7 +34,10 @@ const WalletInput = (props: {
         <span className="label-text">Ethereum wallet address*</span>
         {!enterManually ? (
           <span
-            onClick={() => setEnterManually(true)}
+            onClick={() => {
+              setEnterManually(true);
+              setWalletAddress("");
+            }}
             className="text-sm underline tracking-wider cursor-pointer"
           >
             Enter manually?
@@ -32,7 +55,10 @@ const WalletInput = (props: {
         <input
           type="text"
           placeholder="Type here"
-          className="input input-bordered w-full bg-base-200"
+          className={inputClass}
+          onChange={
+            enterManually ? (e) => setWalletAddress(e.target.value) : () => {}
+          }
         />
       ) : (
         <div className="input input-bordered w-full bg-base-200 flex items-center justify-center cursor-pointer">
