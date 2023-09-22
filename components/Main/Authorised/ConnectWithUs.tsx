@@ -1,6 +1,13 @@
+import TwitterModal from "./TwitterModal";
+import { useState } from "react";
+
 const ConnectWithUs = () => {
+  const [showTwitterModal, setShowTwitterModal] = useState(false);
+  const [twitterHandle, setTwitterHandle] = useState("");
+
   const handleButtonClick = () => {
-    window.open(`https://twitter.com/Mintly_lol`, "_blank");
+    // window.open(`https://twitter.com/Mintly_lol`, "_blank");
+    setShowTwitterModal(true);
   };
 
   return (
@@ -9,7 +16,12 @@ const ConnectWithUs = () => {
         <h1 className="text-xl font-bold px-4">Connect with us</h1>{" "}
         <div className="badge badge-primary">Coming soon</div>
       </div>
-
+      <TwitterModal
+        showTwitterModal={showTwitterModal}
+        setShowTwitterModal={setShowTwitterModal}
+        twitterHandle={twitterHandle}
+        setTwitterHandle={setTwitterHandle}
+      />
       <button
         onClick={handleButtonClick}
         className="w-full max-w-[95%] mt-4 bg-success text-base-content text-xl rounded-lg p-4 border-2 border-transparent hover:border-accent"
