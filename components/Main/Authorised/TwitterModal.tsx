@@ -39,7 +39,7 @@ const TwitterModal = (props: TwitterModalProps) => {
             <div className="card-body">
               <div className="flex justify-between items-center">
                 <h2 className="card-title pb-0">
-                  Earn extra XP by joining our socials!
+                  Earn extra by joining our socials!
                 </h2>
                 <AiOutlineCloseCircle
                   className="text-2xl cursor-pointer"
