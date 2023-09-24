@@ -62,12 +62,13 @@ model User {
   inviteLink          String            @unique
   invitedById         String?
   leaderboardRank     Int?
-  email               String?
-  discordHandle       String?
-  githubHandle        String?
-  twitterHandle       String?
+  email               String?           @unique
+  discordHandle       String?           @unique
+  githubHandle        String?           @unique
+  twitterHandle       String?           @unique
   currentRewardDay    Int               @default(1)
   inviteCount         Int               @default(0)
+  isOnWaitlist Boolean @default(false)
   lastRewardClaimedAt DateTime?
   Bridges             Bridges[]
   Interactions        Interactions[]
