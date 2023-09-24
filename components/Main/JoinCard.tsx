@@ -1,5 +1,3 @@
-import { useState } from "react";
-import Logo from "./Logo";
 import EmailInput from "./EmailInput";
 import WalletInput from "./WalletInput";
 import JoinButton from "../Buttons/JoinButton";

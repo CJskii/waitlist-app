@@ -33,8 +33,6 @@ const JoinButton = (props: {
           ? await joinWaitlist({ emailAddress, walletAddress, refLink })
           : await joinWaitlist({ emailAddress, walletAddress });
 
-      console.log(response);
-
       if (response.ok) {
         response.json().then((data) => {
           if (data.message) {
@@ -43,8 +41,6 @@ const JoinButton = (props: {
           }
         });
       }
-      // success ? show message - joined successfully
-      // failure ? show message - something went wrong
     }
   };
 

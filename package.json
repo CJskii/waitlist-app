@@ -10,7 +10,7 @@
     "vercel-build": "prisma generate && next build"
   },
   "dependencies": {
-    "@prisma/client": "^5.2.0",
+    "@prisma/client": "^5.3.1",
     "@rainbow-me/rainbowkit": "^1.0.10",
     "framer-motion": "^10.16.4",
     "next": "^13.4.19",
@@ -29,7 +29,7 @@
     "eslint": "^8.15.0",
     "eslint-config-next": "^13.4.19",
     "postcss": "^8.4.29",
-    "prisma": "^5.2.0",
+    "prisma": "^5.3.1",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.4"
   }

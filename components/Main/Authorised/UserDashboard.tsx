@@ -69,11 +69,13 @@ const UserDashboard = (props: UserDashboardProps) => {
       </div>
 
       <UserStats data={userData ? userData : {}} />
-      <div className="w-full flex justify-start items-center">
+      <div className="w-full flex justify-start items-center max-sm:grid max-sm:grid-row-2 max-sm:pb-2">
         <h1 className="px-4 text-xl font-bold italic">
           Want to get ahead in line?
         </h1>
-        <div className="badge badge-primary">Earn extra XP</div>
+        <div className="badge badge-primary max-sm:justify-self-start max-sm:ml-4">
+          Earn extra XP
+        </div>
       </div>
 
       <span className="w-full px-4">
