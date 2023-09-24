@@ -41,7 +41,7 @@ const Main = () => {
   return (
     <div className="flex flex-col justify-betweeen items-center min-w-full">
       <section className="bg-base card card-side bg-base-200 shadow-xl bg rounded-xl">
-        <div className="flex flex-col justify-start items-center gap-4 bg-base max-w-[500px]">
+        <div className="flex flex-col justify-start items-center gap-4 bg-base max-w-[650px]">
           <Logo />
           {!joined ? (
             <motion.div

@@ -78,12 +78,12 @@ const UserDashboard = (props: UserDashboardProps) => {
         </div>
       </div>
 
-      <span className="w-full px-4">
+      {/* <span className="w-full px-4">
         Invite your friends and be active at{" "}
         <a href="https://www.mintly.lol" target="_blank" className="underline">
           Mintly.lol
         </a>
-      </span>
+      </span> */}
       <ButtonGroup
         inviteLink={userData.inviteLink ? userData.inviteLink : ""}
       />
