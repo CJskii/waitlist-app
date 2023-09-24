@@ -52,7 +52,7 @@ const TwitterModal = (props: TwitterModalProps) => {
                 />
               </div>
 
-              <span className="text-md">
+              <span className="text-md italic">
                 Hint: this is required for a valid entry
               </span>
 
