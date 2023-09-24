@@ -33,6 +33,9 @@ export default async function handler(
         await prisma.user.update({
           where: { ethereumAddress: address },
           data: {
+            totalPoints: {
+              increment: 250,
+            },
             twitterHandle: twitterHandle,
             isOnWaitlist: true,
           },

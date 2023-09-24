@@ -6,7 +6,6 @@ const ConnectWithUs = () => {
   const [twitterHandle, setTwitterHandle] = useState("");
 
   const handleButtonClick = () => {
-    // window.open(`https://twitter.com/Mintly_lol`, "_blank");
     setShowTwitterModal(true);
   };
 
@@ -14,9 +13,7 @@ const ConnectWithUs = () => {
     <div className="w-full flex flex-col justify-center items-center pt-2 pb-4">
       <div className="flex w-full justify-start items-center max-[350px]:grid max-[350px]:grid-row-2">
         <h1 className="text-xl font-bold px-4">Connect with us</h1>{" "}
-        <div className="badge badge-primary max-[350px]:ml-4">
-          Validate your entry
-        </div>
+        <div className="badge badge-primary max-[350px]:ml-4">+250 XP</div>
       </div>
       <TwitterModal
         showTwitterModal={showTwitterModal}
