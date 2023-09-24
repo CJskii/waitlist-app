@@ -28,19 +28,19 @@ const ButtonGroup = (props: { inviteLink: string }) => {
   };
 
   return (
-    <div className="flex justify-between items-center w-full p-4 gap-4 max-[325px]:flex-col">
+    <div className="flex justify-between items-center w-full p-4 gap-4 max-sm:flex-col">
       <button
         onClick={handleTwitterShare}
-        className="flex justify-center items-center gap-2 w-full bg-base-300 text-base-content text-xl rounded-lg p-2 border-2 border-transparent hover:border-accent"
+        className="flex justify-center gap-2 items-center w-full bg-base-300 text-base-content text-xl rounded-lg p-2 border-2 border-transparent hover:border-accent"
       >
-        <FaSquareXTwitter /> Tweet
+        <FaSquareXTwitter /> <span className="text-left">Tweet</span>
       </button>
       <button
         onClick={handleShareButtonClick}
         className="flex justify-center items-center gap-2 w-full  bg-base-300 text-base-content text-xl rounded-lg p-2 border-2 border-transparent hover:border-accent"
       >
         <BiShareAlt />
-        Share
+        <span className="text-left">Invite Friends</span>
       </button>
       <a
         className="flex justify-center items-center gap-2 w-full"
@@ -50,7 +50,7 @@ const ButtonGroup = (props: { inviteLink: string }) => {
         {" "}
         <button className="flex justify-center items-center gap-2 w-full bg-base-300 text-base-content text-xl rounded-lg p-2 border-2 border-transparent hover:border-accent">
           <MdShowChart />
-          More
+          <span className="text-left">Mint & Bridge</span>
         </button>
       </a>
 
