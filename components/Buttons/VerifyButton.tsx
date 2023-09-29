@@ -14,7 +14,7 @@ const VerifyTwitterButton = (props: { twitterHandle: string }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/signup", {
+      const response = await fetch("/api/waitlist/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
