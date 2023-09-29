@@ -1,7 +1,6 @@
 import { prisma } from "../../../prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { addContactToList } from "../../../utils/handlers/addContact";
-import { sendConfirmationEmailUsingTemplate } from "../../../utils/handlers/sendConfirmationEmail";
+import { sendWelcomeEmail } from "../../../utils/emails/sendWelcomeEmail";
 
 const isValidHandle = (handle: string): boolean => {
   return /^@[a-zA-Z0-9_]{1,15}$/.test(handle);
@@ -31,6 +30,11 @@ export default async function handler(
     if (user) {
       if (user.twitterHandle) {
         return res.status(400).json({ error: "Already submitted" });
+      }
+      if (!user.isSubscribed) {
+        return res
+          .status(400)
+          .json({ error: "Please confirm your email first" });
       } else {
         await prisma.user.update({
           where: { ethereumAddress: address },
@@ -43,8 +47,8 @@ export default async function handler(
           },
         });
 
-        if (user.email) {
-          await sendConfirmationEmailUsingTemplate(user.email, 5137016);
+        if (user.email && user.isSubscribed) {
+          await sendWelcomeEmail(user.email);
         }
 
         return res
