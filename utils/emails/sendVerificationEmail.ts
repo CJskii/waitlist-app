@@ -50,7 +50,6 @@ export async function sendVerificationEmail(to: string, token: string) {
     const response = await mailjet.post("send", { version: "v3.1" }).request({
       Messages: [emailData],
     });
-    console.log(response.body);
   } catch (error) {
     console.error("Error sending email:", error);
   }
