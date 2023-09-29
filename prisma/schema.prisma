@@ -63,6 +63,7 @@ model User {
   invitedById         String?
   leaderboardRank     Int?
   email               String?           @unique
+  isSubscribed       Boolean           @default(false)
   discordHandle       String?           @unique
   githubHandle        String?           @unique
   twitterHandle       String?           @unique

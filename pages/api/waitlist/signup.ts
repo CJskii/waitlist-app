@@ -1,7 +1,7 @@
-import { prisma } from "../../prisma/client";
+import { prisma } from "../../../prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { addContactToList } from "../../utils/handlers/addContact";
-import { sendConfirmationEmailUsingTemplate } from "../../utils/handlers/sendConfirmationEmail";
+import { addContactToList } from "../../../utils/handlers/addContact";
+import { sendConfirmationEmailUsingTemplate } from "../../../utils/handlers/sendConfirmationEmail";
 
 const isValidHandle = (handle: string): boolean => {
   return /^@[a-zA-Z0-9_]{1,15}$/.test(handle);
@@ -44,7 +44,6 @@ export default async function handler(
         });
 
         if (user.email) {
-          await addContactToList(user.email, 10331456);
           await sendConfirmationEmailUsingTemplate(user.email, 5137016);
         }
 
