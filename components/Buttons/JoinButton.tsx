@@ -9,8 +9,10 @@ const JoinButton = (props: {
   emailAddress: string;
   setJoined: (value: boolean) => void;
   joined: boolean;
+  isTermsChecked?: boolean;
 }) => {
-  const { walletAddress, emailAddress, setJoined, joined } = props;
+  const { walletAddress, emailAddress, setJoined, joined, isTermsChecked } =
+    props;
 
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
@@ -55,7 +57,7 @@ const JoinButton = (props: {
   return (
     <>
       <button
-        disabled={joined}
+        disabled={joined || !isTermsChecked}
         onClick={handleJoining}
         className="w-full max-w-[90%] mt-4 bg-base-300 text-base-content text-xl rounded-lg p-4 border-2 border-transparent hover:border-accent"
       >

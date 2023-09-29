@@ -3,6 +3,7 @@ import WalletInput from "./WalletInput";
 import JoinButton from "../Buttons/JoinButton";
 import TermsConditions from "./Terms&Conditions";
 import Header from "./Header";
+import { useState } from "react";
 
 interface JoinCardProps {
   joinProps: {
@@ -25,6 +26,8 @@ const JoinCard = (props: JoinCardProps) => {
     setWalletAddress,
   } = props.joinProps;
 
+  const [isChecked, setIsChecked] = useState(false);
+
   return (
     <>
       <div className="w-full flex flex-col justify-center items-center gap-4">
@@ -42,8 +45,16 @@ const JoinCard = (props: JoinCardProps) => {
           emailAddress={emailAddress}
           setJoined={setJoined}
           joined={joined}
+          isTermsChecked={isChecked}
         />
-        <TermsConditions />
+        <div className="p-2">
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={(e) => setIsChecked(e.target.checked)}
+          />
+          <TermsConditions />
+        </div>
       </div>
     </>
   );

@@ -26,7 +26,7 @@ const PrivacyPage = () => {
           When visiting Mintly, we may ask you to provide us with certain
           personal information that can be used to contact or identify you. This
           information may include, but is not limited to, your name, email
-          address, and Ethereum address.
+          address, and ethereum address.
         </p>
       </div>
 
@@ -47,15 +47,6 @@ const PrivacyPage = () => {
           given to any other company for any reason whatsoever, without your
           consent, other than for the express purpose of delivering the service
           requested.
-        </p>
-      </div>
-
-      <div className="flex flex-col justify-center items-center p-4">
-        <h1 className="text-3xl p-4">Cookies</h1>
-        <p className="text-lg">
-          Mintly uses cookies to store information about visitors’ preferences
-          and to record user-specific information on visits and pages the user
-          views.
         </p>
       </div>
 
