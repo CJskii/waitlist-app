@@ -6,7 +6,7 @@ const mailjet = new Mailjet({
 });
 
 export async function sendVerificationEmail(to: string, token: string) {
-  const verificationLink = `https://whitelist.mintly.lol/verify-email?token=${token}`;
+  const verificationLink = `https://waitlist.mintly.lol/verify-email?token=${token}`;
 
   const emailData = {
     From: {
