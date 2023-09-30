@@ -28,13 +28,9 @@ export default async function handler(
 
     if (existingUser) {
       if (existingUser.email) {
-        await sendVerificationEmail(
-          existingUser.email,
-          "3f1641ad431faca28c0d69936ac62b8c"
-        );
         return res.status(200).json({
           status: "exists_with_email",
-          message: "User already subscribed to the waitlist",
+          message: "User already exists",
         });
       } else {
         const verificationToken = generateVerificationToken();
