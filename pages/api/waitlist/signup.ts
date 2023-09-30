@@ -53,7 +53,7 @@ export default async function handler(
 
         return res
           .status(200)
-          .json({ message: "You have successfully subscribed to whitelist." });
+          .json({ message: "You have successfully subscribed to waitlist." });
       }
     } else {
       return res.status(404).json({ error: "User not found." });
