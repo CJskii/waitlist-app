@@ -14,6 +14,7 @@
     "@rainbow-me/rainbowkit": "^1.0.10",
     "framer-motion": "^10.16.4",
     "next": "^13.4.19",
+    "node-mailjet": "^6.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",

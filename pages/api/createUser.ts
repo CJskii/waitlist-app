@@ -1,5 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../prisma/client";
+import {
+  generateVerificationToken,
+  generateTokenExpiration,
+} from "../../utils/generateToken";
+import { sendVerificationEmail } from "../../utils/emails/sendVerificationEmail";
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,40 +19,68 @@ export default async function handler(
   try {
     const existingUser = await prisma.user.findUnique({
       where: { ethereumAddress },
+      select: {
+        email: true,
+        ethereumAddress: true,
+        verificationTokens: true,
+      },
     });
 
     if (existingUser) {
       if (existingUser.email) {
         return res.status(200).json({
           status: "exists_with_email",
-          message: "User already subscribed to the waitlist",
+          message: "User already exists",
         });
       } else {
+        const verificationToken = generateVerificationToken();
+        const tokenExpiration = generateTokenExpiration();
+
         await prisma.user.update({
           where: { ethereumAddress: existingUser.ethereumAddress },
-          data: { email: emailAddress },
+          data: {
+            email: emailAddress,
+            verificationTokens: {
+              create: {
+                token: verificationToken,
+                identifier: emailAddress,
+                expires: tokenExpiration,
+              },
+            },
+          },
         });
+
+        await sendVerificationEmail(emailAddress, verificationToken);
+
         return res.status(200).json({
           status: "email_updated",
           message: "Email address updated successfully",
         });
       }
+    } else {
+      const verificationToken = generateVerificationToken();
+      const tokenExpiration = generateTokenExpiration();
+
+      const newUser = await prisma.user.create({
+        data: {
+          ethereumAddress: ethereumAddress,
+          email: emailAddress,
+          inviteLink: generateInviteLink(),
+          updatedAt: new Date(),
+          verificationTokens: {
+            create: {
+              token: verificationToken,
+              identifier: emailAddress,
+              expires: tokenExpiration,
+            },
+          },
+        },
+      });
+
+      await sendVerificationEmail(emailAddress, verificationToken);
+
+      return res.status(201).json({ status: "user_created", newUser });
     }
-
-    const referrer = await isValidRefLink(refLink);
-
-    const newUser = await prisma.user.create({
-      data: {
-        ethereumAddress: ethereumAddress,
-        email: emailAddress,
-        inviteLink: generateInviteLink(),
-        invitedById: referrer ? referrer.ethereumAddress : null,
-        updatedAt: new Date(),
-      },
-    });
-
-    console.log(`New user created`);
-    return res.status(201).json({ status: "user_created", newUser }); // 201 means Created
   } catch (error) {
     console.error(error);
     return res
@@ -63,15 +96,4 @@ function generateInviteLink(): string {
     count: 1,
   });
   return code[0];
-}
-
-async function isValidRefLink(refLink: string | null) {
-  if (refLink != null) {
-    const referrer = await prisma.user.findUnique({
-      where: { inviteLink: refLink },
-    });
-    return referrer ? referrer : null;
-  } else {
-    return null;
-  }
 }
