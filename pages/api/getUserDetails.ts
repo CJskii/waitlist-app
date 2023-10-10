@@ -13,8 +13,13 @@ export default async function handler(
 
   try {
     // Fetch the user by ethereumAddress
-    const user = await prisma.user.findUnique({
-      where: { ethereumAddress },
+    const user = await prisma.user.findFirst({
+      where: {
+        ethereumAddress: {
+          equals: ethereumAddress,
+          mode: "insensitive",
+        },
+      },
     });
 
     if (!user) {

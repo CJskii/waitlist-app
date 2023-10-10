@@ -17,8 +17,13 @@ export default async function handler(
   const { ethereumAddress, emailAddress, refLink } = req.body;
 
   try {
-    const existingUser = await prisma.user.findUnique({
-      where: { ethereumAddress },
+    const existingUser = await prisma.user.findFirst({
+      where: {
+        ethereumAddress: {
+          equals: ethereumAddress,
+          mode: "insensitive",
+        },
+      },
       select: {
         email: true,
         ethereumAddress: true,
