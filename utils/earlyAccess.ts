@@ -1,8 +1,8 @@
 import Mailjet from "node-mailjet";
 import { prisma } from "../prisma/client";
 const mailjet = new Mailjet({
-  apiKey: process.env.NEXT_PUBLIC_MAILJET_API_KEY,
-  apiSecret: process.env.NEXT_PUBLIC_MAILJET_SECRET_KEY,
+  apiKey: process.env.MAILJET_API_KEY,
+  apiSecret: process.env.MAILJET_SECRET_KEY,
 });
 
 const sendEmailsToTop100 = async () => {
